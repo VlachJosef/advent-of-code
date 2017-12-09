@@ -10,8 +10,8 @@ import Prelude (Unit, (==), (<>), ($))
 import Year2017.Day2 (SpreadSheet, input, solution1, solution2)
 
 day2Tests :: forall e. Eff (console :: CONSOLE | e) Unit
-day2Tests = foreachE (solution1Tests <> solution2Tests) (\(f /\ a /\ b) -> do
-                                            log $ show (f a == Just b) <> " --- " <> show a <> " should be " <> show b) where
+day2Tests = foreachE (solution1Tests <> solution2Tests) (\(f /\ testee /\ expected) -> do
+                                                            log $ show (f testee == Just expected) <> " --- " <> show testee <> " should be " <> show expected) where
   solution1Tests :: Array ((SpreadSheet -> Maybe Int) /\ SpreadSheet /\ Int)
   solution1Tests = map (solution1 /\ _)[
     solution1TestInput  /\ 18,
