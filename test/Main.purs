@@ -8,6 +8,7 @@ import Test.Year2017.Day2 (day2Tests)
 import Test.Year2017.Day3 (day3Tests, day3NeighboursTests)
 import Test.Year2017.Day4 (day4Tests)
 import Test.Year2017.Day5 (day5Tests)
+import Test.Year2017.Day6 (day6Tests, day6Tests2)
 
 main :: forall e. Eff (console :: CONSOLE | e) Unit
-main = foreachE [day1Tests, day2Tests, day3Tests, day3NeighboursTests, day4Tests, day5Tests] id
+main = foreachE [day1Tests, day2Tests, day3Tests, day3NeighboursTests, day4Tests, day5Tests, day6Tests, day6Tests2] id
