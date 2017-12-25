@@ -13,6 +13,7 @@ import Test.Year2017.Day7 (day7Tests, day7Tests2, day7Tests3)
 import Test.Year2017.Day8 (day8Tests)
 import Test.Year2017.Day9 (day9Tests, day9Tests2, day9Tests3, day9Tests4)
 import Test.Year2017.Day10 (day10Tests, day10Tests2, day10Tests3)
+import Test.Year2017.Day11 (day11Tests, day11Tests2, day11Tests3)
 
 
 main :: forall e. Eff (console :: CONSOLE | e) Unit
@@ -36,4 +37,7 @@ main = foreachE [ day1Tests
                 , day10Tests
                 , day10Tests2
                 , day10Tests3
+                , day11Tests
+                , day11Tests2
+                , day11Tests3
                 ] id
