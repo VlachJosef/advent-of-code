@@ -7,17 +7,16 @@ import Data.Array (concatMap, cons, elemIndex, fromFoldable, length, nub, sort)
 import Data.Either (either)
 import Data.Function (flip, id)
 import Data.Functor (map)
-import Data.Int (fromString)
 import Data.List (List(Nil), filter)
 import Data.Map as M
-import Data.Maybe (Maybe(Nothing, Just), isNothing, maybe)
-import Data.String (fromCharArray)
+import Data.Maybe (Maybe(Nothing, Just), isNothing)
 import Data.Tuple.Nested (type (/\), (/\))
-import Prelude (bind, ($), (*>), (<<<), (<>))
-import Text.Parsing.StringParser (Parser, fail, runParser)
-import Text.Parsing.StringParser.Combinators (many1, sepBy)
-import Text.Parsing.StringParser.String (anyDigit, skipSpaces, string)
+import Prelude (bind, ($), (*>), (<<<))
+import Text.Parsing.StringParser (Parser, runParser)
+import Text.Parsing.StringParser.Combinators (sepBy)
+import Text.Parsing.StringParser.String (skipSpaces, string)
 import Year2017.Day12.Types (Pipe(..), Pipes(..))
+import Year2017.Day8 (pIntPositive)
 
 all :: Pipes -> Array (Array Int)
 all p@(Pipes pipes) = let
@@ -51,14 +50,6 @@ pipeToTuple (Pipe {from, to}) = from /\ to
 
 parseInput :: String -> List Pipe
 parseInput str = either (\_ -> Nil) id $ runParser pInput str
-
-pDigits :: Parser String
-pDigits = map fromCharArray (map fromFoldable $ many1 anyDigit)
-
-pIntPositive :: Parser Int
-pIntPositive = do
-  digits <- pDigits
-  maybe (fail $ "Expected a number, got " <> digits) pure (fromString digits)
 
 pInput :: Parser (List Pipe)
 pInput = pPipe `sepBy` string "\n"
